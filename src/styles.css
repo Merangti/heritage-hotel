@@ -1,0 +1,231 @@
+@import "tailwindcss" source(none);
+@source "../src";
+@import "tw-animate-css";
+@import url("https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Inter:wght@300;400;500;600&display=swap");
+
+@custom-variant dark (&:is(.dark *));
+
+/* The Heritage Hearth — Kohima
+ * Palette: Deep Naga Red, Brass/Gold, vellum & aged parchment.
+ * Typography: Cormorant Garamond (journal serif) + Inter (sans).
+ */
+
+@theme inline {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+
+  --color-naga: var(--naga);
+  --color-naga-deep: var(--naga-deep);
+  --color-brass: var(--brass);
+  --color-brass-bright: var(--brass-bright);
+  --color-vellum: var(--vellum);
+  --color-parchment: var(--parchment);
+  --color-ink: var(--ink);
+
+  --font-serif: "Cormorant Garamond", ui-serif, Georgia, serif;
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+
+  --shadow-brass: 0 1px 0 oklch(0.78 0.12 85 / 0.6) inset, 0 8px 24px -8px oklch(0.45 0.1 60 / 0.5);
+  --shadow-ledger: 0 20px 60px -20px oklch(0.2 0.05 30 / 0.55);
+}
+
+:root {
+  --radius: 0.25rem;
+
+  /* Aged parchment background */
+  --background: oklch(0.94 0.025 75);
+  --foreground: oklch(0.22 0.04 35);
+
+  --card: oklch(0.96 0.022 78);
+  --card-foreground: oklch(0.22 0.04 35);
+  --popover: oklch(0.96 0.022 78);
+  --popover-foreground: oklch(0.22 0.04 35);
+
+  /* Deep Naga Red #8B0000 */
+  --primary: oklch(0.38 0.19 27);
+  --primary-foreground: oklch(0.96 0.02 80);
+
+  --secondary: oklch(0.88 0.03 75);
+  --secondary-foreground: oklch(0.25 0.05 30);
+
+  --muted: oklch(0.9 0.022 78);
+  --muted-foreground: oklch(0.42 0.03 40);
+
+  --accent: oklch(0.72 0.13 85);
+  --accent-foreground: oklch(0.18 0.04 30);
+
+  --destructive: oklch(0.45 0.2 27);
+  --destructive-foreground: oklch(0.96 0.02 80);
+
+  --border: oklch(0.78 0.04 70 / 0.5);
+  --input: oklch(0.78 0.04 70 / 0.7);
+  --ring: oklch(0.55 0.13 60);
+
+  /* Brand-specific */
+  --naga: oklch(0.38 0.19 27);
+  --naga-deep: oklch(0.28 0.16 27);
+  --brass: oklch(0.68 0.12 80);
+  --brass-bright: oklch(0.82 0.14 88);
+  --vellum: oklch(0.95 0.02 78);
+  --parchment: oklch(0.9 0.035 70);
+  --ink: oklch(0.18 0.03 30);
+}
+
+.dark {
+  --background: oklch(0.18 0.02 30);
+  --foreground: oklch(0.92 0.025 75);
+  --card: oklch(0.22 0.025 30);
+  --card-foreground: oklch(0.92 0.025 75);
+  --popover: oklch(0.22 0.025 30);
+  --popover-foreground: oklch(0.92 0.025 75);
+  --primary: oklch(0.55 0.2 27);
+  --primary-foreground: oklch(0.96 0.02 80);
+  --secondary: oklch(0.28 0.04 30);
+  --secondary-foreground: oklch(0.92 0.025 75);
+  --muted: oklch(0.26 0.03 30);
+  --muted-foreground: oklch(0.7 0.03 70);
+  --accent: oklch(0.72 0.13 85);
+  --accent-foreground: oklch(0.18 0.03 30);
+  --destructive: oklch(0.6 0.22 27);
+  --destructive-foreground: oklch(0.96 0.02 80);
+  --border: oklch(1 0 0 / 0.1);
+  --input: oklch(1 0 0 / 0.15);
+  --ring: oklch(0.6 0.13 60);
+}
+
+@layer base {
+  * {
+    border-color: var(--color-border);
+  }
+
+  html,
+  body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-sans);
+    /* Aged vellum texture via layered SVG noise + parchment tint */
+    background-image:
+      radial-gradient(at 10% 10%, oklch(0.92 0.04 60 / 0.6), transparent 50%),
+      radial-gradient(at 90% 80%, oklch(0.86 0.05 50 / 0.5), transparent 55%),
+      url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='220' height='220'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.45  0 0 0 0 0.32  0 0 0 0 0.18  0 0 0 0.08 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+    background-attachment: fixed;
+  }
+
+  h1,
+  h2,
+  h3,
+  .font-journal {
+    font-family: var(--font-serif);
+    letter-spacing: -0.01em;
+  }
+}
+
+@layer utilities {
+  .text-brass {
+    color: var(--color-brass);
+  }
+  .bg-naga {
+    background-color: var(--color-naga);
+  }
+  .bg-vellum {
+    background-color: var(--color-vellum);
+  }
+  .bg-parchment {
+    background-color: var(--color-parchment);
+  }
+
+  .brass-surface {
+    background: linear-gradient(
+      135deg,
+      oklch(0.78 0.13 88) 0%,
+      oklch(0.62 0.11 75) 45%,
+      oklch(0.78 0.13 88) 55%,
+      oklch(0.55 0.1 70) 100%
+    );
+    box-shadow: var(--shadow-brass);
+  }
+
+  .vellum-card {
+    background-color: var(--color-vellum);
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='180' height='180'><filter id='p'><feTurbulence type='fractalNoise' baseFrequency='0.7' numOctaves='2'/><feColorMatrix values='0 0 0 0 0.4  0 0 0 0 0.28  0 0 0 0 0.15  0 0 0 0.06 0'/></filter><rect width='100%25' height='100%25' filter='url(%23p)'/></svg>");
+    border: 1px solid var(--color-border);
+  }
+
+  .input-line {
+    width: 100%;
+    background: transparent;
+    border: 0;
+    border-bottom: 1px solid var(--color-border);
+    padding: 0.5rem 0;
+    font-family: var(--font-serif, ui-serif, Georgia, serif);
+    font-style: italic;
+    color: var(--color-foreground);
+    outline: none;
+    transition: border-color 200ms ease;
+  }
+  .input-line:focus {
+    border-bottom-color: var(--color-naga);
+  }
+  .input-line::placeholder {
+    color: oklch(0.55 0.02 70);
+    opacity: 0.7;
+  }
+
+  .thread-divider {
+    background: linear-gradient(
+      180deg,
+      transparent,
+      var(--color-naga) 20%,
+      var(--color-naga) 80%,
+      transparent
+    );
+  }
+
+  @keyframes float-slow {
+    0%,
+    100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-6px);
+    }
+  }
+  .animate-float-slow {
+    animation: float-slow 6s ease-in-out infinite;
+  }
+
+  @keyframes thread-grow {
+    from {
+      transform: scaleY(0);
+    }
+    to {
+      transform: scaleY(1);
+    }
+  }
+  .animate-thread {
+    animation: thread-grow 1.2s ease-out forwards;
+    transform-origin: top;
+  }
+}
